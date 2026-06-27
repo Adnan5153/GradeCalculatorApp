@@ -1,17 +1,74 @@
-# gradcal
+# GradCal
 
-A new Flutter project.
+GradCal is a Flutter-based grade tracker app that helps students add subjects, record marks, and monitor academic performance through summary analytics.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Add new subjects with marks
+- View a list of recorded subjects
+- See overall grade, average mark, and performance insights
+- Swipe to delete subjects with undo support
+- Light and dark theme support
 
-A few resources to get you started if this is your first Flutter project:
+## Screens
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- **Add Subject**: Add a subject name and mark to track performance
+- **Subject List**: Review all entered subjects and delete items
+- **Summary**: View academic insights and overall grade summary
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Prerequisites
+
+Before running this project locally, make sure you have:
+
+- Flutter SDK installed: https://docs.flutter.dev/get-started/install
+- A connected device or emulator
+- `flutter` available in your terminal PATH
+
+## Local Setup
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd gradcal
+```
+
+2. Fetch dependencies:
+
+```bash
+flutter pub get
+```
+
+3. Run the app:
+
+```bash
+flutter run
+```
+
+If you have multiple devices connected, choose one from the prompt or run:
+
+```bash
+flutter run -d <device-id>
+```
+
+## Using in Your Local Machine
+
+- Open the project in Visual Studio Code or Android Studio.
+- Use the terminal to run `flutter pub get`.
+- Launch a simulator/emulator or connect a physical device.
+- Start the app with `flutter run`, or use the editor's run/debug buttons.
+- Make UI changes in `lib/` and hot-reload with `r` in the terminal or the editor's hot reload action.
+
+## Recommended Workflow
+
+- Use `flutter pub get` after pulling changes
+- Run `flutter analyze` to check for issues
+- Use `flutter test` if test files are added
+
+## Notes
+
+- The main app entry point is `lib/main.dart`.
+- Core UI files are under `lib/features/grade_tracker/presentation/`.
+- Themes are defined in `lib/core/theme/`.
+
+---
