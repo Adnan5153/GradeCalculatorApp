@@ -77,6 +77,11 @@ class LightTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
+          textStyle: const TextStyle(
+            inherit: false,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
 

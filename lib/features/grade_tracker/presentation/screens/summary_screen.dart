@@ -258,9 +258,18 @@ class _InsightTile extends StatelessWidget {
         children: [
           Icon(icon, color: theme.colorScheme.primary),
           const SizedBox(width: AppDimensions.spacingMD),
-          Expanded(child: Text(title, style: theme.textTheme.bodyLarge)),
+          Expanded(
+            child: Text(
+              title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
           Text(
             value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
             ),

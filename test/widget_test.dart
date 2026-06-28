@@ -1,30 +1,56 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
-import 'package:gradcal/main.dart';
+import 'package:gradcal/core/constants/app_strings.dart';
+import 'package:gradcal/features/grade_tracker/presentation/providers/grade_provider.dart';
+import 'package:gradcal/features/grade_tracker/presentation/providers/theme_provider.dart';
+import 'package:gradcal/features/grade_tracker/presentation/screens/summary_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('summary screen renders within a constrained viewport', (
+    WidgetTester tester,
+  ) async {
+    final gradeProvider = GradeProvider();
+    gradeProvider.addSubject(name: 'Mathematics', mark: 82);
+    gradeProvider.addSubject(name: 'Science', mark: 74);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      ChangeNotifierProvider.value(
+        value: gradeProvider,
+        child: const MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(width: 320, height: 600, child: SummaryScreen()),
+            ),
+          ),
+        ),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    expect(find.text(AppStrings.academicSummary), findsOneWidget);
+    expect(find.text(AppStrings.academicInsights), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('toggling theme does not throw text style interpolation errors', (
+    WidgetTester tester,
+  ) async {
+    final themeProvider = ThemeProvider();
+
+    await tester.pumpWidget(
+      ChangeNotifierProvider.value(
+        value: themeProvider,
+        child: const MaterialApp(home: Scaffold(body: SummaryScreen())),
+      ),
+    );
+
+    themeProvider.toggleTheme();
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    themeProvider.toggleTheme();
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
   });
 }

@@ -95,7 +95,11 @@ class DarkTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          textStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+          textStyle: const TextStyle(
+            inherit: false,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
 

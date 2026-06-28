@@ -80,27 +80,43 @@ class SummaryCard extends StatelessWidget {
                   ),
                 ),
 
-                const Spacer(),
+                const SizedBox(height: AppDimensions.spacingMD),
 
-                Text(
-                  value,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    color: theme.colorScheme.onPrimary,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: -1,
-                  ),
-                ),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          value,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            color: theme.colorScheme.onPrimary,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: -1,
+                          ),
+                        ),
 
-                const SizedBox(height: AppDimensions.spacingXS),
+                        const SizedBox(height: AppDimensions.spacingXS),
 
-                Text(
-                  title.toUpperCase(),
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    color: theme.colorScheme.onPrimary.withValues(alpha: 0.85),
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1,
+                        Text(
+                          title.toUpperCase(),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: theme.colorScheme.onPrimary.withValues(
+                              alpha: 0.85,
+                            ),
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
